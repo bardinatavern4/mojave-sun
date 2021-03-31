@@ -1,6 +1,6 @@
 /obj/item/ms13/storage/backpack/radiopack
 	icon = 'mojave/icons/objects/clothing/backpack.dmi'
-	name = "radiopack"
+	name = "\improper Radiopack"
 	icon_state = "radiopack"
 	worn_icon = 'mojave/icons/mob/clothing/back.dmi'
 	lefthand_file = 'mojave/icons/mob/inhands/items_lefthand.dmi'
@@ -84,7 +84,7 @@
 
 /obj/item/radio/ms13/NCR
 	icon = 'mojave/icons/objects/hamradio.dmi'
-	name = "Walkie-Talkie"
+	name = "\improper Walkie-Talkie"
 	icon_state = "handradio"
 	inhand_icon_state = "handradio_"
 	desc = "The important bit of the radiopack, this broadcasts and recieves radio messages in decent quality."

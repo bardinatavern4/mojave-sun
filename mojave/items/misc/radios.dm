@@ -1,6 +1,6 @@
 /obj/item/radio/ms13
 	icon = 'mojave/icons/objects/hamradio.dmi'
-	name = "hand Radio"
+	name = "\improper Hand Radio"
 	icon_state = "handradio"
 	inhand_icon_state = "handradio_"
 	desc = "A basic handheld radio that recieves over a relatively long range, unfortunately this one can't broadcast."
@@ -20,7 +20,7 @@
 
 /obj/item/radio/ms13/broadcast
 	icon = 'mojave/icons/objects/hamradio.dmi'
-	name = "broadcast hand radio"
+	name = "\improper Broadcast Hand Radio"
 	icon_state = "handradio"
 	inhand_icon_state = "handradio_"
 	desc = "A rare handheld radio that can send as well as recieve signals. The poor quality of broadcasts makes it unpleasent to listen to, and doing so too often is a good way to get lynched."
@@ -28,14 +28,14 @@
 
 /obj/item/radio/ms13/broadcast/prewar
 	icon = 'mojave/icons/objects/hamradio.dmi'
-	name = "pre-War hand radio"
+	name = "\improper Advanced Hand Radio"
 	icon_state = "handradio"
 	inhand_icon_state = "handradio_"
 	desc = "The best a handheld gets, this extremely rare radio can broadcast at reasonably high quality while remaining lightweight and portable."
 	radio_broadcast = RADIOSTATIC_MEDIUM
 
 /obj/item/radio/ms13/ham
-	name = "ham radio"
+	name = "\improper Ham Radio"
 	desc = "An amateur radio setup. The sound quality could be better, but it beats listening to brahmin all day. Has a working microphone, though the quality isn't great."
 	icon = 'mojave/icons/objects/hamradio.dmi'
 	icon_state = "radio_on"
@@ -60,7 +60,7 @@
 	RegisterSignal(current_area, COMSIG_AREA_POWER_CHANGE, .proc/AreaPowerCheck)
 
 /obj/item/radio/ms13/ham/broadcast
-	name = "high power broadcasting set"
+	name = "\improper High Power Broadcasting Set"
 	desc = "A high end broadcasting set used by professional radio studios. Legend has it that Mr. New Vegas himself uses this model."
 	icon = 'mojave/icons/objects/hamradio.dmi'
 	icon_state = "radio_on"
