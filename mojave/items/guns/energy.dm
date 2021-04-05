@@ -7,11 +7,12 @@
 	lefthand_file = 'mojave/icons/mob/inhands/weapons/guns_inhand_left.dmi'
 	righthand_file = 'mojave/icons/mob/inhands/weapons/guns_inhand_right.dmi'
 
+
 /obj/item/gun/energy/ms13/laser/aer9
 	name = "AER9 Laser Rifle"
 	desc = "A sturdy and advanced military grade pre-war service laser rifle"
-	icon_state = "laser"
-	inhand_icon_state = "laser-rifle9"
+	icon_state = "stanlas_rifle"
+	inhand_icon_state = "stanlas_rifle"
 	ammo_type = list(/obj/item/ammo_casing/energy/ms13/laser/lasgun)
 	cell_type = /obj/item/stock_parts/cell/ammo/mfc
 	w_class = WEIGHT_CLASS_HUGE
@@ -78,21 +79,68 @@
 //projectiles
 
 /obj/projectile/beam/ms13
-	speed = 0.2 //Vanilla tg is 0.8
+	name = "laser"
+	icon_state = "laser"
+	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
+	damage = 20
+	damage_type = BURN
+	hitsound = 'sound/weapons/sear.ogg'
+	hitsound_wall = 'sound/weapons/effects/searwall.ogg'
+	flag = LASER
+	eyeblur = 2
+	impact_effect_type = /obj/effect/temp_visual/impact_effect/red_laser
+	tracer_type = /obj/effect/projectile/tracer/laser
+	muzzle_type = /obj/effect/projectile/muzzle/laser
+	impact_type = /obj/effect/projectile/impact/laser
+	light_system = MOVABLE_LIGHT
+	hitscan_light_intensity = 2
+	hitscan_light_range = 0.50
+	hitscan_light_color_override = COLOR_SOFT_RED
+	muzzle_flash_intensity = 4
+	muzzle_flash_range = 1
+	muzzle_flash_color_override = COLOR_SOFT_RED
+	impact_light_intensity = 5
+	impact_light_range = 1.25
+	impact_light_color_override = COLOR_SOFT_RED
+	ricochets_max = 50 //Honk!
+	ricochet_chance = 80
+	range = 15
+	reflectable = REFLECT_NORMAL
+	wound_bonus = -20
+	bare_wound_bonus = 10
+	var/damage_constant = 0.8
+
+/obj/projectile/beam/ms13/Range()
+	if(hitscan != TRUE)
+		return ..()
+	var/turf/location = get_turf(src)
+	if(!location)
+		return ..()
+	var/datum/gas_mixture/environment = location.return_air()
+	var/environment_pressure = environment.return_pressure()
+	if(environment_pressure >= 50)
+		if((decayedRange - range) >= 4)
+			damage *= damage_constant
+	. = ..()
+
+/obj/projectile/beam/laser
+	wound_bonus = -30
+	bare_wound_bonus = 40
+	hitscan = TRUE
 
 /obj/projectile/beam/ms13/laser/lasgun
 	name = "laser beam"
 	damage = 34
 	armour_penetration = -9
-
+	hitscan = TRUE
 /obj/projectile/beam/ms13/laser/pistol
 	name = "laser beam"
 	damage = 25
-
+	hitscan = TRUE
 /obj/projectile/beam/ms13/laser/tribeam
 	name = "tribeam laser"
 	damage = 15
-
+	hitscan = TRUE
 /obj/projectile/bullet/ms13/plasma
 	name = "plasma clot"
 	damage = 60
