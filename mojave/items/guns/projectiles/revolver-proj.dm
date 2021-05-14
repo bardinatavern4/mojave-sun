@@ -1,8 +1,8 @@
 //.44
 /obj/projectile/bullet/ms13/m44
-	damage = 0
-	armour_penetration = 0
-	wound_bonus = -2
+	damage = 43
+	armour_penetration = 0.22
+	wound_bonus = 20
 
 /obj/projectile/bullet/ms13/m44/junk
 	damage = -5

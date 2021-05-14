@@ -60,9 +60,9 @@
 	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/ms13/rev44
 	fire_sound = 'mojave/sound/ms13weapons/44mag.ogg'
 	w_class = WEIGHT_CLASS_NORMAL
-	fire_delay = 5
-	extra_damage = 35
-	extra_penetration = 10
+	fire_delay = 4
+	extra_damage = 3
+	recoil = 0.5
 
 /obj/item/gun/ballistic/revolver/ms13/rev44/mysterious
 	name = "\improper Mysterious Magnum"

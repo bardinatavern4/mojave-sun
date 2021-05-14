@@ -3,23 +3,33 @@
 	var/armor = getarmor(def_zone, attack_flag)
 
 	//the if "armor" check is because this is used for everything on /living, including humans
+	if(silent && armor > 0)
+		if(armour_penetration > 1)
+			armour_penetration = 1//Penetrating more than 100% of armour is a bit funky, let's just cap it -- DR2 LINEARMOR
+		if(armor >= 100)//The formula doesn't work for armour values 100 or more and dividing by zero is not fun -- DR2 LINEARMOR
+			return max(0, armor*(1-armour_penetration))
+		if(armor < 100)//Formula turns armor in to linearmor, reduces it by AP%, turns it back into armor -- DR2 LINEARMOR
+			return max(0, (100*(armor/(-armor+100)*(1-armour_penetration)))/((armor/(-armor+100)*(1-armour_penetration))+1))//This might be excessive brackets but I'm taking no chances
+
+	//the if "armor" check is because this is used for everything on /living, including humans
+
 	if(armor > 0 && armour_penetration)
-		armor = max(0, armor - armour_penetration)
+		if(armour_penetration > 1)
+			armour_penetration = 1
+		if(armor >= 100)
+			armor = max(0, armor*(1-armour_penetration))
+		if(armor < 100)
+			armor = max(0, (100*(armor/(-armor+100)*(1-armour_penetration)))/((armor/(-armor+100)*(1-armour_penetration))+1))
 		if(penetrated_text)
-			to_chat(src, "<span class='userdanger'>[penetrated_text]</span>")
-		else
-			to_chat(src, "<span class='userdanger'>Your armor was penetrated!</span>")
+			to_chat(src, "<span class='danger'>[penetrated_text]</span>")
 	else if(armor >= 100)
 		if(absorb_text)
-			to_chat(src, "<span class='notice'>[absorb_text]</span>")
-		else
-			to_chat(src, "<span class='notice'>Your armor absorbs the blow!</span>")
-	else
+			to_chat(src, "<span class='danger'>[absorb_text]</span>")
+	else if(armor > 0)
 		if(soften_text)
-			to_chat(src, "<span class='warning'>[soften_text]</span>")
-		else
-			to_chat(src, "<span class='warning'>Your armor softens the blow!</span>")
+			to_chat(src, "<span class='danger'>[soften_text]</span>")
 	return armor
+
 
 /mob/living/proc/getarmor(def_zone, type)
 	return 0
